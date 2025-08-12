@@ -5,13 +5,11 @@ const experience = [
     period: 'March 2025 — Present',
     location: 'Hyderabad, Telangana, India',
     highlights: [
-      'Developed and maintained web applications using React, Node.js, and MongoDB.',
-      'Collaborated with cross-functional teams to implement new features and improve user experience.',
-      'Optimized application performance and scalability.',
-      'Implemented security measures to protect sensitive data.',
-      'Participated in code reviews and provided technical guidance to junior developers.',
-      'Worked on a project to develop a web application for a client.',
-      'Worked on a project to develop a web application for a client.',
+      'Building responsive and reusable UI components using Guidewire Jutro Framework and Design System',
+      'Integrating APIs and customizing Jutro SDK components for business needs.',
+      'Collaborating with cross-functional teams to deliver high-quality digital insurance experiences.',
+      'Implementing theming, localization, and accessibility features',
+      'Maintaining code quality with testing and optimization best practices.'
     ],
   },
   {
@@ -20,8 +18,11 @@ const experience = [
     period: 'November 2024 — March 2025',
     location: 'Hyderabad, Telangana, India',
     highlights: [
-      'Worked on a project to develop a web application for a client.',
-      'Worked on a project to develop a web application for a client.', 
+      'Developed user interfaces using React to build responsive and interactive web applications.',
+      'Implemented and managed data storage and retrieval with MySQL databases',
+      'Gained hands-on experience with backend development using Spring Boot for API creation and integration',
+      'Collaborated with team members on full stack projects, contributing to both frontend and backend components',
+      'Strengthened understanding of full stack workflows and best practices through real-world training assignments' 
     ],
   },
 ];
