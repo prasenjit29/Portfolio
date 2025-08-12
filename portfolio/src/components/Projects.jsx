@@ -8,7 +8,10 @@ function Projects() {
     <Section id="projects" title="Projects" subtitle="Selected work" className="projects">
       <div className="grid cols-2">
         {projects.map((p) => (
-          <ProjectCard key={p.title} project={p} />
+          <div key={p.title}>
+            <div className="project-cover" />
+            <ProjectCard project={p} />
+          </div>
         ))}
       </div>
     </Section>
