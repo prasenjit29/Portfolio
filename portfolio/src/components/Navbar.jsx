@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const links = [
   { href: '#home', label: 'Home' },
@@ -13,22 +13,6 @@ const links = [
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('#home');
-
-  useEffect(() => {
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const onScroll = () => {
-      const top = window.scrollY + 120;
-      let current = '#home';
-      for (const s of sections) {
-        if (top >= s.offsetTop) current = `#${s.id}`;
-      }
-      setActive(current);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   return (
     <nav className="nav">
@@ -36,24 +20,49 @@ function Navbar() {
         <div className="brand">Prasenjit</div>
         <div className="nav-links">
           {links.map((l) => (
-            <a key={l.href} className="nav-link" href={l.href} style={active === l.href ? { color: 'var(--text)' } : undefined}>{l.label}</a>
+            <a key={l.href} className="nav-link" href={l.href}>{l.label}</a>
           ))}
           <a className="btn" href="#contact">Hire me</a>
-          <a className="nav-link" href="https://github.com/prasenjit29" target="_blank" rel="noreferrer" aria-label="GitHub"><FaGithub /></a>
-          <a className="nav-link" href="https://www.linkedin.com/in/prasenjit-urade-a96155323/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
         </div>
         <button className="menu-btn btn ghost" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">Menu</button>
       </div>
-      {open && (
-        <div className="container" style={{ paddingBottom: 12 }}>
-          <div className="card" style={{ display: 'grid', gap: 8 }}>
-            {links.map((l) => (
-              <a key={l.href} className="nav-link" href={l.href} onClick={() => setOpen(false)}>{l.label}</a>
-            ))}
-            <a className="btn" href="#contact" onClick={() => setOpen(false)}>Hire me</a>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            className="container"
+            style={{ paddingBottom: 12 }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
+          >
+            <motion.div
+              className="card"
+              style={{ display: 'grid', gap: 8 }}
+              initial={{ y: -8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
+              transition={{ duration: 0.22 }}
+            >
+              {links.map((l, idx) => (
+                <motion.a
+                  key={l.href}
+                  className="nav-link"
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * idx }}
+                >
+                  {l.label}
+                </motion.a>
+              ))}
+              <a className="btn" href="#contact" onClick={() => setOpen(false)}>Hire me</a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
