@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import personal from '../data/personal';
 import Section from './Section';
 
@@ -6,16 +7,18 @@ function Hero() {
   return (
     <Section id="home" className="hero">
       <div className="container">
-        <span className="tag">Available for work</span>
-        <h1>Hi, I'm {personal.name} — {personal.role}</h1>
-        <p>{personal.summary}</p>
-        <div className="hero-cta">
+        <motion.span className="tag" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .1 }}>Available for work</motion.span>
+        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .2 }}>
+          Hi, I'm <span className="gradient-text">{personal.name}</span> — {personal.role}
+        </motion.h1>
+        <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .3 }}>{personal.summary}</motion.p>
+        <motion.div className="hero-cta" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .4 }}>
           {personal.resumeUrl && (
             <a className="btn" href={personal.resumeUrl} target="_blank" rel="noreferrer">Download Resume</a>
           )}
           <a className="btn ghost" href="#projects">View Projects</a>
           <a className="btn ghost" href="#contact">Contact</a>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );
